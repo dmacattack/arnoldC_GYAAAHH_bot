@@ -18,8 +18,8 @@ def printPost(author, text):
    print "---------------------------"
 
 bot = praw.Reddit(user_agent='arnoldC_GYAAAHH_bot v0.1',
-                  client_id='KVEqjgN09CRMaw',
-                  client_secret='UBA1Ly9ewZf0M40K4I8q3p7nxoM',
+                  client_id='id',
+                  client_secret='secret',
                   username='arnoldC_GYAAAHH_bot',
                   password='spacesNotTabs')
 
