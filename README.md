@@ -8,4 +8,10 @@ Version 0.1
 ------------
 initial creation of the dumb idea
 
+Version 0.2
+------------
+Add initial code for reading reddit. 
+Commiter rule: must include what was being drunk when coding
+
+
 
