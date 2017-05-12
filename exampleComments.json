@@ -1,0 +1,147 @@
+##################### example comment 1 #########################
+---------------------------
+author: bzarnal
+ text: what is being done in this part?
+
+
+    scan_list(void)
+    {
+        struct list *l = NULL, **cell = &l;
+        int val;
+
+        while (scanf("%d", &val) == 1) {
+                *cell = malloc(sizeof **cell);
+                if (*cell == NULL) {
+                        perror("malloc");
+                        exit(EXIT_FAILURE);
+                }
+
+                (*cell)->next = NULL;
+                (*cell)->elem = val;
+                cell = &(*cell)->next;
+        }
+
+        return (l);
+    }
+
+that's the first I've seen a pointer used that way
+
+---------------------------
+{'link_url': u'https://www.reddit.com/r/C_Programming/comments/6abw37/is_it_even_possible_to_sort_singly_linked_lists/', 
+'subreddit_id': u't5_2qhoe', 
+'subreddit_name_prefixed': u'r/C_Programming', 
+'edited': False, 
+'_info_params': {}, 
+'banned_by': None, 
+'removal_reason': None, 
+'link_id': u't3_6abw37', 
+'_submission': None, 
+'link_author': u'bzarnal', 
+'likes': None, 
+'user_reports': [], 
+'saved': False, 
+'id': u'dheiiaw', 
+'gilded': 0, 
+'archived': False, 
+'report_reasons': None, 
+'author': Redditor(name='bzarnal'), 
+'num_comments': 7, 
+'parent_id': u't1_dhdbwi1', 
+'score': 1, 
+'approved_by': None, 
+'over_18': False, 
+'controversiality': 0, 
+'body': u'what is being done in this part?   \n  \n\n    scan_list(void)\n    {\n\tstruct list *l = NULL, 
+**cell = &l;\n\tint val;\n\n\twhile (scanf("%d", 
+&val) == 1) {\n\t\t*cell = malloc(sizeof **cell);\n\t\tif (*cell == NULL) {\n\t\t\tperror("malloc");\n\t\t\texit(EXIT_FAILURE);\n\t\t}\n\n\t\t(*cell)->next = NULL;\n\t\t(*cell)->elem = val;\n\t\tcell = &(*cell)->next;\n\t}\n\n\treturn (l);\n    }   \n  \nthat\'s the first I\'ve seen a pointer used that way\n', 
+'link_title': u'is it even possible to sort singly linked lists?', 
+'author_flair_css_class': None, 
+'downs': 0, 
+'body_html': u'<div class="md"><p>what is being done in this part?   </p>\n\n<pre><code>scan_list(void)\n{\nstruct list *l = NULL, 
+**cell = &amp;l;\nint val;\n\nwhile (scanf(&quot;%d&quot;, 
+&amp;val) == 1) {\n    *cell = malloc(sizeof **cell);\n    if (*cell == NULL) {\n        perror(&quot;malloc&quot;);\n        exit(EXIT_FAILURE);\n    }\n\n    (*cell)-&gt;next = NULL;\n    (*cell)-&gt;elem = val;\n    cell = &amp;(*cell)-&gt;next;\n}\n\nreturn (l);\n}   \n</code></pre>\n\n<p>that&#39;s the first I&#39;ve seen a pointer used that way</p>\n</div>', 
+'_replies': [], 
+'_reddit': <praw.reddit.Reddit object at 0x76afca70>, 
+'can_gild': True, 
+'subreddit': Subreddit(display_name='C_Programming'), 
+'_mod': None, 
+'name': u't1_dheiiaw', 
+'score_hidden': False, 
+'num_reports': None, 
+'link_permalink': u'https://www.reddit.com/r/C_Programming/comments/6abw37/is_it_even_possible_to_sort_singly_linked_lists/', 
+'stickied': False, 
+'created': 1494496026.0, 
+'author_flair_text': None, 
+'quarantine': False, 
+'created_utc': 1494467226.0, 
+'distinguished': None, 
+'mod_reports': [], 
+'subreddit_type': u'public', 
+'ups': 1, 
+'_fetched': True}
+---------------------------
+
+
+
+##################### example comment 2 #########################
+---------------------------
+author: tavianator
+ text: Here's what I'm trying to argue: a function like this
+
+    something *create_something() {
+        something *s = malloc(sizeof(*s));
+        s->field = value;
+        return s;
+    }
+
+is *always* thread-safe because no thread (current or otherwise) can possibly observe `s` until `create_something()` returns.
+---------------------------
+{'link_url': u'https://www.reddit.com/r/C_Programming/comments/6a0p2b/is_this_thread_safe/', 
+'subreddit_id': u't5_2qhoe', 
+'subreddit_name_prefixed': u'r/C_Programming', 
+'edited': False, 
+'_info_params': {}, 
+'banned_by': None, 
+'removal_reason': None, 
+'link_id': u't3_6a0p2b', 
+'_submission': None, 
+'link_author': u'Chieve', 
+'likes': None, 
+'user_reports': [], 
+'saved': False, 
+'id': u'dhbx1p8', 
+'gilded': 0, 
+'archived': False, 
+'report_reasons': None, 
+'author': Redditor(name='tavianator'), 
+'num_comments': 9, 
+'parent_id': u't1_dhazrhh', 
+'score': 2, 
+'approved_by': None, 
+'over_18': False, 
+'controversiality': 0, 
+'body': u"Here's what I'm trying to argue: a function like this\n\n    something *create_something() {\n        something *s = malloc(sizeof(*s));\n        s->field = value;\n        return s;\n    }\n\nis *always* thread-safe because no thread (current or otherwise) can possibly observe `s` until `create_something()` returns.", 
+'link_title': u'Is this thread safe?', 
+'author_flair_css_class': None, 
+'downs': 0, 
+'body_html': u'<div class="md"><p>Here&#39;s what I&#39;m trying to argue: a function like this</p>\n\n<pre><code>something *create_something() {\n    something *s = malloc(sizeof(*s));\n    s-&gt;field = value;\n    return s;\n}\n</code></pre>\n\n<p>is <em>always</em> thread-safe because no thread (current or otherwise) can possibly observe <code>s</code> until <code>create_something()</code> returns.</p>\n</div>', 
+'_replies': [], 
+'_reddit': <praw.reddit.Reddit object at 0x76afca70>, 
+'can_gild': True, 
+'subreddit': Subreddit(display_name='C_Programming'), 
+'_mod': None, 
+'name': u't1_dhbx1p8', 
+'score_hidden': False, 
+'num_reports': None, 
+'link_permalink': u'https://www.reddit.com/r/C_Programming/comments/6a0p2b/is_this_thread_safe/', 
+'stickied': False, 
+'created': 1494371011.0, 
+'author_flair_text': None, 
+'quarantine': False, 
+'created_utc': 1494342211.0, 
+'distinguished': None, 
+'mod_reports': [], 
+'subreddit_type': u'public', 
+'ups': 2, 
+'_fetched': True}
+---------------------------
