@@ -1,0 +1,6 @@
+echo
+java
+Java
+catch
+try
+python
