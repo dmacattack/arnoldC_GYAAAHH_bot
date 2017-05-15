@@ -38,13 +38,34 @@ def printPost(post):
    print( post.body_html )
    print("--------------------------------------------------------------------------")
 
+# get the code substring indexes and return them as a list
+def getCodeIndexes(code):
+   idx = []
+   isFound = True
+   currIdx = 0
+   count = 0
+   strLen = len(code)
 
-def getCode(html):
-   # TODO substring the text
-   codeStart = html.find("<code>")
-   codeStop  = html.find("</code>")
-   code = html[codeStart+6:codeStop]
-   return code
+   while (isFound):
+      print ">> searching at " + str(currIdx) + "/" + str(strLen)
+      stt = code.find("<code>", currIdx, strLen ) + 6
+      stp = code.find("</code>", currIdx, strLen)
+
+      if ( (stt == -1) or (stp == -1) ):
+         isFound = False
+      else:
+         print ("start = " + str(stt) + " stop = " + str(stp) )
+         idx.append([stt,stp])
+         currIdx = stp + 1
+         print "updating currIdx to " + str(currIdx)
+
+      # safegaurd against infinite loops
+      if (count > (strLen/2) ):
+         isFound = False
+      else:
+         count = count + 1
+
+   return idx
 
 bot = praw.Reddit(user_agent='arnoldC_GYAAAHH_bot v0.1',
                   client_id='KVEqjgN09CRMaw',
@@ -64,9 +85,13 @@ for comment in comments:
    if checkforcode(html_text):
       printPost(comment)
       # print out the code to show its isolation
-      code = getCode(comment.body_html)
+      idxs = getCodeIndexes(html_text)
+      if ( idxs > 0 ):
+         for i in range(len(idxs)):
+            pr = idxs[i]
+            DBG_WRN('$$$$$$$$$$$' + str(i) + ': ' + str(pr) + '$$$$$$$$' )
+            DBG_WRN(html_text[ pr[0] : pr[1] ] )
       #containsBlackList(code)
-      DBG_WRN(code)
-      print ""
-      print ""
 
+      print ""
+      print ""
