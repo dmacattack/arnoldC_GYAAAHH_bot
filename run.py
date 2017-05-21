@@ -23,6 +23,30 @@ def containsBlackList(text):
          DBG_MSG("keep looking num" + i)
    return isBlackList
 
+# code must be at least 3 lines long
+def checkLength(text):
+   isLongEnough = False
+   lineCnt = 1
+   loopLook = True
+   startIdx = 0
+
+   while(loopLook):
+      idx = text.find("\n", startIdx, len(text) )
+
+      if (idx == -1):
+         loopLook = False
+      elif (lineCnt >= 3):
+         loopLook = False
+      else:
+         lineCnt = lineCnt + 1
+         startIdx = idx + 1
+
+
+      if (lineCnt >= 3):
+         isLongEnough = True
+
+   return isLongEnough
+   
 # check for code in the post
 def checkforcode(text):
    if "<code>" in text:
@@ -92,14 +116,16 @@ for comment in comments:
          for i in range(len(idxs)):
             pr = idxs[i]
             DBG_WRN('$$$$$$$$$$$' + str(i) + ': ' + str(pr) + '$$$$$$$$' )
-            DBG_WRN(html_text[ pr[0] : pr[1] ] )
+            codeBlock = html_text[ pr[0] : pr[1] ]
+            DBG_WRN(codeBlock)
 
+            isLongEnough = checkLength(codeBlock)
+            DBG_WRN("is Code Long Enough " + str(isLongEnough) )
             #containsBlackList(code)
-
-            # translate those blocks
-            DBG_ERR("*************************")
-            code = html_text[ pr[0] : pr[1] ]
-            code = translate(code)
-            DBG_ERR(code)
+            if (isLongEnough == True):
+               # translate those blocks
+               DBG_ERR("*************************")
+               codeBlock = translate(codeBlock)
+               DBG_ERR(codeBlock)
       print ""
       print ""
