@@ -19,6 +19,10 @@ add comment parsing of the code
 add blacklisting functionality, although it errors sometimes (commented for now)
 use the DBG logging
 
+Version 0.4
+------------
+add dictionary file based on https://github.com/lhartikk/ArnoldC
+do a translation of the code into arnold C
 
 
 

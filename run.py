@@ -1,5 +1,7 @@
 import praw
 from ArnoldLogging import DBG_MSG, DBG_WRN, DBG_ERR
+from ArnoldCDict import translate
+
 # https://github.com/praw-dev/praw/
 
 # import in the blacklist
@@ -91,7 +93,13 @@ for comment in comments:
             pr = idxs[i]
             DBG_WRN('$$$$$$$$$$$' + str(i) + ': ' + str(pr) + '$$$$$$$$' )
             DBG_WRN(html_text[ pr[0] : pr[1] ] )
-      #containsBlackList(code)
 
+            #containsBlackList(code)
+
+            # translate those blocks
+            DBG_ERR("*************************")
+            code = html_text[ pr[0] : pr[1] ]
+            code = translate(code)
+            DBG_ERR(code)
       print ""
       print ""
